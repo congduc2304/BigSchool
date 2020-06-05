@@ -17,6 +17,8 @@ namespace BigSchool.Controllers
             _dbContext = new ApplicationDbContext();
         }
 
+
+
         public List<Category> Categories { get; private set; }
         // GET: Courses
         [Authorize]
