@@ -31,6 +31,7 @@ namespace BigSchool.Controllers
             return View(viewModel);
         }
 
+
         [Authorize]
         [HttpPost]
         public ActionResult Create(CourseViewModel viewModel)
