@@ -18,10 +18,6 @@ namespace BigSchool.ViewModels
                 DateTimeStyles.None,
                 out dateTime);
             return (isValid);
-
-
-
-
              
         }
     }
