@@ -15,6 +15,7 @@ namespace BigSchool.Controllers
         {
             _dbContext = new ApplicationDbContext();
         }
+
         public ActionResult Index()
         {
             var upcommingCourses = _dbContext.Courses
@@ -23,6 +24,7 @@ namespace BigSchool.Controllers
                 .Where(c => c.Datetime > DateTime.Now);
 
             return View(upcommingCourses);
+
         }
 
         public ActionResult About()
