@@ -1,11 +1,11 @@
-﻿@model IEnumerable<BigSchool.Models.Course>
+﻿@model BigSchool.ViewModels.CourseViewModel
 @{
     ViewBag.Title = "Home Page";
 }
 
 
 <ul class="course">
-    @foreach (var course in Model)
+    @foreach (var course in Model.UpcomingCourses)
     {
         <li>
             <div class="date">
@@ -20,6 +20,10 @@
                 <div>
                     <span class="lecturer">
                         @course.Lecturer.Name
+                        @if (Model.ShowAction)
+                        {
+                            <button class="btn btn-link btn-sm js-toggle-follow"data-user-id="@course.LecturerId">Follow></button>
+                        }
                         <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Follow</button>
                     </span>
                 </div>
@@ -27,7 +31,9 @@
                     <span class="category">
                         @course.Category.Name
                     </span>
-                    <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance"></button>
+                    @if(Model.ShowAction)
+
+                    <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
 
                 </div>
             </div>
