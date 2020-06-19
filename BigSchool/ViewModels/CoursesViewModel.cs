@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using BigSchool.Models;
+﻿using BigSchool.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using BigSchool.Models;
 
-namespace BigSchool.Controllers
+namespace BigSchool.ViewModels
 {
     public class CoursesViewModel
     {
         public IEnumerable<Course> UpcomingCourses { get; set; }
         public bool ShowAction { get; set; }
-       // public List<Category> Categories { get; set; }
+
     }
 }
