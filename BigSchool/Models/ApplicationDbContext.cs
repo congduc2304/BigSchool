@@ -31,11 +31,15 @@ namespace BigSchool.Models
                 .WithMany()
                 .WillCascadeOnDelete(false);
 
+
             modelBuilder.Entity<ApplicationUser>()
                 .HasMany(u => u.Followees)
-                .WithRequired(f => f.Flolower)
+                .WithRequired(f => f.Follower)
                 .WillCascadeOnDelete(false);
+
+
             base.OnModelCreating(modelBuilder);
+
         }
     }
 }

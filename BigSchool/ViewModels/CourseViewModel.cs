@@ -14,7 +14,6 @@ namespace BigSchool.ViewModels
         [Requied]
         [FutureDate]
         public string Date { get; set; }
-
         [Requied]
         [ValidTime]
         public string Time { get; set; }

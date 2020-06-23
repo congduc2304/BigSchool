@@ -207,14 +207,20 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\CoursesController.cs" />
     <Compile Include="Controllers\AttendancesController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\FollowingsController.cs" />
+    <Compile Include="Controllers\FollowsController.cs" />
     <Compile Include="DTOs\AttendanceDto.cs" />
     <Compile Include="DTOs\FollowingDto.cs" />
-    <Compile Include="Migrations\202006181327417_AddFollowingsTable.cs" />
-    <Compile Include="Migrations\202006181327417_AddFollowingsTable.Designer.cs">
-      <DependentUpon>202006181327417_AddFollowingsTable.cs</DependentUpon>
+    <Compile Include="Migrations\202006231502588_AddFollowingsTable.cs" />
+    <Compile Include="Migrations\202006231502588_AddFollowingsTable.Designer.cs">
+      <DependentUpon>202006231502588_AddFollowingsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006231504568_AddIsCanceledColumnToCourse.cs" />
+    <Compile Include="Migrations\202006231504568_AddIsCanceledColumnToCourse.Designer.cs">
+      <DependentUpon>202006231504568_AddIsCanceledColumnToCourse.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Following.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -321,6 +327,7 @@
     <Content Include="Views\Courses\Create.cshtml" />
     <Content Include="Views\Courses\Attending.cshtml" />
     <Content Include="Views\Courses\Mine.cshtml" />
+    <Content Include="Views\Follows\FollowLecturer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -349,8 +356,11 @@
     <EmbeddedResource Include="Migrations\202006180806088_AddAttendance.resx">
       <DependentUpon>202006180806088_AddAttendance.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006181327417_AddFollowingsTable.resx">
-      <DependentUpon>202006181327417_AddFollowingsTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006231502588_AddFollowingsTable.resx">
+      <DependentUpon>202006231502588_AddFollowingsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006231504568_AddIsCanceledColumnToCourse.resx">
+      <DependentUpon>202006231504568_AddIsCanceledColumnToCourse.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

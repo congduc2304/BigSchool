@@ -20,7 +20,7 @@ namespace BigSchool.Controllers
 
 
 
-        public List<Category> Categories { get; private set; }
+
         // GET: Courses
         [Authorize]
         public ActionResult Create()
@@ -33,13 +33,12 @@ namespace BigSchool.Controllers
             return View(viewModel);
         }
 
-
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CourseViewModel viewModel)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 viewModel.Categories = _dbContext.Categories.ToList();
                 return View("Create", viewModel);
@@ -54,7 +53,7 @@ namespace BigSchool.Controllers
             _dbContext.Courses.Add(course);
             _dbContext.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Mine", "Courses");
         }
 
 
@@ -70,8 +69,15 @@ namespace BigSchool.Controllers
                 .Include(l => l.Category)
                 .ToList();
 
+            var follows = _dbContext.Followings
+                .Include(a => a.Followee)
+              .Include(a => a.Follower)
+              .Where(a => a.FollowerId == userId)
+              .ToList();
+
             var viewModel = new CoursesViewModel
             {
+                FollowingUser = follows,
                 UpcomingCourses = courses,
                 ShowAction = User.Identity.IsAuthenticated
             };
@@ -94,7 +100,7 @@ namespace BigSchool.Controllers
         }
 
         [Authorize]
-        public ActionResult Edit( int id)
+        public ActionResult Edit(int id)
         {
             var userId = User.Identity.GetUserId();
 
@@ -103,7 +109,7 @@ namespace BigSchool.Controllers
             var viewModel = new CourseViewModel
             {
                 Categories = _dbContext.Categories.ToList(),
-                Date = course.Datetime.ToString("dd/M/yyyy"),
+                Date = course.Datetime.ToString("yyyy/MM/dd"),
                 Time = course.Datetime.ToString("HH:mm"),
                 Category = course.CategoryId,
                 Place = course.Place,
@@ -113,6 +119,8 @@ namespace BigSchool.Controllers
 
             return View("Create", viewModel);
         }
+
+
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -123,6 +131,7 @@ namespace BigSchool.Controllers
                 viewModel.Categories = _dbContext.Categories.ToList();
                 return View("Create", viewModel);
             }
+
             var userId = User.Identity.GetUserId();
             var course = _dbContext.Courses.Single(c => c.Id == viewModel.Id && c.LecturerId == userId);
 
